@@ -1,27 +1,19 @@
-import React from 'react';
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
-function GoogleLoginButton() {
-  console.log("GoogleLoginButton");
-
-    const onSuccess = (response) => {
-        console.log("onSuccess :: response :: ", response);
-    };
-
-    const onFailure = (error) => {
-        console.log("onFailure :: error :: ", error);
-    };
-
+const GoogleLoginButton = () => {
   return (
-    <GoogleLogin
-      clientId="1020336237076-038a3b00nth32pp49266f31sm4a5qfr6.apps.googleusercontent.com"
-      buttonText="Google 로그인"
-      onSuccess={onSuccess}
-      onFailure={onFailure}
-      cookiePolicy={'single_host_origin'}
-      // clientpw="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"
+    <GoogleOAuthProvider clientId='1020336237076-038a3b00nth32pp49266f31sm4a5qfr6.apps.googleusercontent.com'>
+      <GoogleLogin
+        onSuccess={(credentialResponse) => {
+          console.log("onSuccess :: ", credentialResponse);
+        }}
+        onError={() => {
+          console.log("onError :: ", 'Login Failed');
+        }}
       />
+    </GoogleOAuthProvider>
   );
-}
+};
 
 export default GoogleLoginButton;
