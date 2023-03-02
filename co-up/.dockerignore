@@ -1,0 +1,14 @@
+node_modules
+build
+out
+.DS_Store
+.next
+npm-debug.log
+yarn-error.log
+yarn.lock
+*.log
+*.gz
+.vscode
+.idea
+*.iml
+.env*
