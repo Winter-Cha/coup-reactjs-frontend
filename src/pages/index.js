@@ -2,8 +2,14 @@ import Head from 'next/head';
 import styles from '/styles/Home.module.css';
 import GoogleLoginButton from '/src/component/login/google'
 
+// redux store start
+import { Provider } from 'react-redux';
+import store from '../store';
+// redux store end
+
 export default function Home() {
   return (
+    <Provider store={store}>
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -13,7 +19,7 @@ export default function Home() {
       <main>
         <GoogleLoginButton></GoogleLoginButton>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!!!!!</a>
+          Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className={styles.description}>
@@ -113,5 +119,6 @@ export default function Home() {
         }
       `}</style>
     </div>
+    </Provider>
   )
 }
