@@ -1,0 +1,36 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export interface ThemeProps {
+  backgroundColor: string;
+  color: string;
+  buttonHoverColor?: string;
+}
+
+export interface ThemeState {
+  isDarkMode: boolean;
+  theme: ThemeProps;
+}
+
+const initialState: ThemeState = {
+  isDarkMode: false,
+  theme: {
+    backgroundColor: "white",
+    color: "black",
+  },
+};
+
+export const themeSlice = createSlice({
+  name: "theme",
+  initialState,
+  reducers: {
+    toggleTheme: (state) => {
+      state.isDarkMode = !state.isDarkMode;
+    },
+    setTheme: (state, action: PayloadAction<{ theme: ThemeProps }>) => {
+      state.theme = action.payload.theme;
+    },
+  },
+});
+
+export const { toggleTheme, setTheme } = themeSlice.actions;
+export default themeSlice.reducer;
