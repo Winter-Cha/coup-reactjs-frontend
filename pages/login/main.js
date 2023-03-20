@@ -1,13 +1,11 @@
 import Head from 'next/head';
 import styles from '/styles/Home.module.css';
-import GoogleLoginButton from '/component/login/google'
 
 export default function Home() {
   return (
     <div className={styles.container}>
 
       <main>
-        <GoogleLoginButton></GoogleLoginButton>
       </main>
 
       <footer>
