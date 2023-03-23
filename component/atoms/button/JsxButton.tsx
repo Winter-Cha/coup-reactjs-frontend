@@ -13,6 +13,7 @@ const JsxButton: FunctionComponent = () => {
           background: ${theme.backgroundColor};
           font-size: 16px;
           font-weight: bold;
+          color: ${theme.color};
         }
         button:hover {
           background: ${theme.buttonHoverColor};

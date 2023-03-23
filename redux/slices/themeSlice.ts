@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 export interface ThemeProps {
   backgroundColor: string;
   color: string;
@@ -16,6 +15,7 @@ const initialState: ThemeState = {
   theme: {
     backgroundColor: "white",
     color: "black",
+    buttonHoverColor: "rgba(0, 0, 0, 0.1)",
   },
 };
 
@@ -25,6 +25,17 @@ export const themeSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state.isDarkMode = !state.isDarkMode;
+      state.theme = state.isDarkMode
+        ? {
+          backgroundColor: "#1a1a1a",
+          color: "white",
+          buttonHoverColor: "rgba(0, 0, 0, 0.7)",
+        }
+        : {
+          backgroundColor: "white",
+          color: "black",
+          buttonHoverColor: "rgba(0, 0, 0, 0.1)",
+        };
     },
     setTheme: (state, action: PayloadAction<{ theme: ThemeProps }>) => {
       state.theme = action.payload.theme;
