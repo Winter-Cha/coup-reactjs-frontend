@@ -1,13 +1,13 @@
-// make component that returns ipost list using useAppSelector and useAppDispatch
+// make component that returns post list using useAppSelector and useAppDispatch
 import { useAppDispatch, useAppSelector } from "@/redux";
-import { fetchPosts } from "@/redux/slices/IPostSlice";
+import { fetchPosts } from "@/redux/slices/postSlice";
 import { FunctionComponent } from "react";
-import { IPost } from "@/models/IPost";
+import { Post } from "@/models/Post";
 
-const IPost: FunctionComponent = () => {
+const Post: FunctionComponent = () => {
   const dispatch = useAppDispatch();
-  const posts = useAppSelector((state) => state.iPostSlice.posts);
-  const loading = useAppSelector((state) => state.iPostSlice.loading);
+  const posts = useAppSelector((state) => state.post.posts);
+  const loading = useAppSelector((state) => state.post.loading);
   const clickFetchPosts = () => {
     dispatch(fetchPosts());
   };
@@ -16,7 +16,7 @@ const IPost: FunctionComponent = () => {
       <button onClick={clickFetchPosts}>Fetch Posts</button>
       {loading && <p>Loading...</p>}
       <ul>
-        {posts.map((post: IPost) => (
+        {posts.map((post: Post) => (
           <li key={post.id}>{post.title}</li>
         ))}
       </ul>
@@ -24,4 +24,4 @@ const IPost: FunctionComponent = () => {
   );
 };
 
-export default IPost;
+export default Post;

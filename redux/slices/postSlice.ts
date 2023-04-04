@@ -1,23 +1,23 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { enqueueSnackbar } from 'notistack';
-import { IPost } from '../../models/IPost';
+import { Post } from '../../models/Post';
 
-// make IPost thunk
+// make Post thunk
 export const fetchPosts = createAsyncThunk('post/fetchPosts', async () => {
     // make 2 seconds delay
     await new Promise((resolve) => setTimeout(resolve, 2000));
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
     const data = await response.json();
-    return data as IPost[];
+    return data as Post[];
 });
 
-export interface IPostState {
-    posts: IPost[];
+export interface PostState {
+    posts: Post[];
     loading: boolean;
     error: string | undefined;
 }
 
-const initialState: IPostState = {
+const initialState: PostState = {
     posts: [],
     loading: false,
     error: undefined,

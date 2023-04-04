@@ -4,9 +4,8 @@ import Head from "next/head";
 import styles from "/styles/Home.module.css";
 import { enqueueSnackbar } from "notistack";
 
-import ThemeToggleButton from "@/component/atoms/button/ThemeToggleButton";
-import IPost from "@/component/templetes/sample/IPost";
-import GoogleLoginButton from "@/component/templetes/login/google";
+import IPost from "@/component/templetes/sample/Post";
+import Header from "@/component/templetes/layout/Header";
 
 const Home: NextPage = () => {
   return (
@@ -17,8 +16,7 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
-          <GoogleLoginButton></GoogleLoginButton>
-          <ThemeToggleButton></ThemeToggleButton>
+          <Header />
           <button onClick={() => enqueueSnackbar("That was easy!")}>
             Show snackbar
           </button>
@@ -74,7 +72,7 @@ const Home: NextPage = () => {
 
         <style jsx>{`
           main {
-            padding: 5rem 0;
+            padding: 1rem 0;
             flex: 1;
             display: flex;
             flex-direction: column;

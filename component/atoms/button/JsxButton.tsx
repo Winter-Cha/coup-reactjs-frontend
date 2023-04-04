@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 
 const JsxButton: FunctionComponent = () => {
-  const theme = useSelector((state: RootState) => state.themeSlice.theme);
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <>
       <button>Log in</button>
