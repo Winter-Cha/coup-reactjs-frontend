@@ -8,6 +8,16 @@ WORKDIR /usr/src/app
 # package.json 및 package-lock.json 워킹 디렉토리에 복사 (.은 설정한 워킹 디렉토리를 뜻함)
 COPY package*.json ./
 
+
+# npm의 캐시 삭제
+RUN npm cache clean --force
+
+# npm 버전업
+RUN npm install -g npm@latest
+
+# next강제 설치
+RUN npm install next
+
 # 명령어 실행 (의존성 설치)
 RUN npm install
 
