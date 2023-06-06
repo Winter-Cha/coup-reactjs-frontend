@@ -14,7 +14,7 @@ up:
 	@docker-compose ${COMPOSE_FILES} up
 
 down:
-	@docker-compose ${COMPOSE_FILES} down -rmi
+	@docker-compose ${COMPOSE_FILES} down --rmi all
 
 shell: up
 	@docker exec -it execapp /bin/bash
