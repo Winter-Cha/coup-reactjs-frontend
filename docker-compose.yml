@@ -1,6 +1,7 @@
 version: '3'
 services:
   execapp:
+    container_name: app
     build:  
       dockerfile: Dockerfile
     ports:
