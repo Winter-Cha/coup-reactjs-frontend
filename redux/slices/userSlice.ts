@@ -8,6 +8,7 @@ const initialState: User = {
     email: '',
     avatar: '',
     token: '',
+    picture: undefined
 };
 
 const userSlice = createSlice({

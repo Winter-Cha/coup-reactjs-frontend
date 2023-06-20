@@ -1,22 +1,44 @@
-// make _app.tsx for me
+import * as React from "react";
+import Head from "next/head";
 import { AppProps } from "next/app";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import theme from "@/utils/theme";
+import createEmotionCache from "@/utils/createEmotionCache";
+import Copyright from "@/components/templetes/layout/Copyright";
+import Navbar from "@/components/templetes/layout/NavBar";
 import { Provider } from "react-redux";
 import store from "@/redux";
-import { SnackbarProvider } from "notistack";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+export interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+export default function MyApp(props: MyAppProps) {
+  const [mode, setMode] = React.useState<"light" | "dark">("light");
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
+    //redux provider
+
     <Provider store={store}>
-      <SnackbarProvider>
-        <Component {...pageProps} />
-      </SnackbarProvider>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <Navbar />
+          {/* <Sidebar setMode={setMode} mode={mode} /> */}
+          {/* <MiniDrawer> */}
+          <Component {...pageProps} />
+          <Copyright />
+        </ThemeProvider>
+      </CacheProvider>
     </Provider>
   );
-};
-
-export default MyApp;
+}
