@@ -4,6 +4,7 @@ import themeSlice from './slices/themeSlice'
 import iPostSlice from './slices/postSlice'
 import userSlice from './slices/userSlice'
 import globalSlice from './slices/globalSlice'
+import projectSlice from './slices/projectSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     post: iPostSlice,
     user: userSlice,
     global: globalSlice,
+    project: projectSlice,
   },
 })
 
