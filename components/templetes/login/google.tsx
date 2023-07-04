@@ -1,6 +1,7 @@
 import { User } from "@/models/User";
 import { useAppDispatch, useAppSelector } from "@/redux";
 import { closeDialog } from "@/redux/slices/globalSlice";
+import { createUser, fetchUser } from "@/redux/slices/userSlice";
 import { GoogleLogin, GoogleLoginProps } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
@@ -12,10 +13,10 @@ const GoogleLoginButton = () => {
     <GoogleOAuthProvider clientId="1020336237076-038a3b00nth32pp49266f31sm4a5qfr6.apps.googleusercontent.com">
       <GoogleLogin
         onSuccess={(credentialResponse) => {
-          console.log(credentialResponse);
+          console.log("In credentialResponse !! :: ", credentialResponse);
           if (credentialResponse.credential) {
             const decoded: any = jwt_decode(credentialResponse.credential);
-            console.log(decoded);
+            console.log("decoded !! :: ", decoded);
             dispatch({
               type: "user/setUser",
               payload: {
@@ -25,6 +26,12 @@ const GoogleLoginButton = () => {
                 picture: decoded.picture,
               },
             });
+            dispatch(createUser(decoded)).then((e) => {
+              console.log("In disPatch Then", e);
+            });
+            // dispatch(fetchUser()).then((e) => {
+            //   console.log("In disPatch Then", e);
+            // });
             dispatch(closeDialog());
           }
 
